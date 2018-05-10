@@ -35,10 +35,10 @@ let colorRatio = {
 */
 
 // // D3 select The elements & convert to vars
-// let barDiv = document.getElementById("rangeBar");
-// const barSVG = d3.select(barDiv).append("svg");
-// const barGObj = barSVG.append('g');
-// const bars = barGObj.selectAll('rect');
+let barDiv = document.getElementById("rangeBar");
+const barSVG = d3.select(barDiv).append("svg");
+const barGObj = barSVG.append('g');
+const bars = barGObj.selectAll('rect');
 
 // // Build Variables
 // const barVars = {
