@@ -15,7 +15,7 @@ let fancyData = [];
 //     .range(d3.schemeReds[5]);
 
 const income_color = d3.scaleSequential(d3.interpolateReds)
-    .domain([0,32])
+    .domain([0.5,31.9])
 
 const incomeData = d3.map();
 
@@ -359,7 +359,7 @@ let resizedWidth = legendDiv.clientWidth;
 let resizedHeight = legendDiv.clientHeight;
 
 const greenColorScale = d3.scaleSequential(d3.interpolateReds)
-.domain([0,32]);
+.domain([0.5,31.9]);
 
 continuous(legendDiv, greenColorScale);
 
@@ -430,7 +430,7 @@ function continuous(selector_id, colorscale) {
     .append("g")
     .attrs({
       "class": "axis",
-      "transform": "translate(" + (legendwidth - margin.left - margin.right + 3) + ",-10"+")"
+      "transform": "translate(" + (legendwidth - margin.left - margin.right + 3) + ",-5"+")"
     })// + (margin.top) + ")")
     .call(legendaxis);
 };
