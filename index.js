@@ -411,7 +411,7 @@ function continuous(selector_id, colorscale) {
     .tickSize(1) //size of tick mark, not text
     .tickFormat((d) =>{
       let f = d3.format(".2s");
-      return (`${f(d)}`)
+      return (`${f(d)}%`)
     })
     .ticks(3);
 
@@ -430,7 +430,7 @@ function continuous(selector_id, colorscale) {
     .append("g")
     .attrs({
       "class": "axis",
-      "transform": "translate(" + (legendwidth - margin.left - margin.right + 3) + ",-5"+")"
+      "transform": "translate(" + (legendwidth - margin.left - margin.right + 3) + ",0"+")"
     })// + (margin.top) + ")")
     .call(legendaxis);
 };
