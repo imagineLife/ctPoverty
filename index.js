@@ -8,7 +8,12 @@ let lvl = {
 
 const income_domain = [lvl.one,lvl.two,lvl.three,lvl.four]
 
-let fancyData = [];
+let fancyData = {
+    "under18":0,
+    "18-34":0,
+    "35-64":0,
+    "65+":0
+  };
 //categorical coloring option
 // const income_color = d3.scaleThreshold()
 //     .domain(income_domain)
@@ -136,19 +141,27 @@ d3.queue()
             colorRatio["level5"]++;
             break;
     };
-    if(d.town == 'Hartford' 
-      || d.town == 'New London'
-       || d.town == 'Windham'
-        || d.town == 'Weston'
-        || d.town == 'Darien'
-        || d.town == 'New Canaan'){
-      let thisObj = {
-      'town' :d.town,
-      'income':+d.percent
-      }
 
-      fancyData.push(thisObj);
-    }
+      // fancyData.push({"<18":d[5]});
+//       let fancyData = [
+//   {"under18" : 0},
+//   {"18-34":0},
+//   {"35-64":0},
+//   {"65+":0}
+// ];
+    let young = isNaN(d['<18Val']) ? null : d['<18Val'];
+    let second = isNaN(d['18-34Val']) ? null : d['18-34Val'];
+    let third = isNaN(d['35-64Val']) ? null : d['35-64Val'];
+    let oldnum = isNaN(d['65+Val']) ? null : d['65+Val'];
+      let youngVal = (+fancyData["under18"] + +young);
+      let secondVal = (+fancyData["18-34"] + +second);
+      let thirdVal = (+fancyData["35-64"] + +third);
+      let oldVal = (+fancyData["65+"] + +oldnum);
+      fancyData["under18"] = youngVal;
+      fancyData["18-34"] = secondVal;
+      fancyData["35-64"] = thirdVal;
+      fancyData["65+"] = oldVal;
+    
     return d;
 
   })
@@ -188,7 +201,8 @@ const stateSVG = d3.select("#stateImage")
 function ready(error, data) {
     if (error) throw error;
 
-    fancyData.sort((a,b) => b.income - a.income);
+    console.log('fancyData ->',fancyData);
+    // fancyData.sort((a,b) => b.income - a.income);
     //puts income vals into arr
     const incomeDataArr = [];
     for(const val in incomeData){
